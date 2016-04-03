@@ -1,0 +1,381 @@
+<html lang="en-us" >
+<head>
+<title>Change basic enquiry form | Django site admin</title>
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css" /> -->
+<!--[if lte IE 7]><link rel="stylesheet" type="text/css" href="/static/admin/css/ie.css" /><![endif]-->
+
+<script type="text/javascript">
+	window.__admin_media_prefix__ = "/static/admin/";
+</script>
+<script type="text/javascript">
+	window.__admin_utc_offset__ = "19800";
+</script>
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript"
+	src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript"
+	src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<!--  <link href="cover.css" rel="stylesheet"> -->
+
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+
+<style>
+
+.module {
+    border: 1px solid #ccc;
+    margin-bottom: 5px;
+    background: #fff;
+}
+
+.calendarbox, .clockbox {
+    margin: 5px auto;
+    font-size: 11px;
+    width: 16em;
+    text-align: center;
+    background: white;
+    position: relative;
+}
+
+.clockbox {
+    width: auto;
+}
+
+.calendar {
+    margin: 0;
+    padding: 0;
+}
+
+.calendar table {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    background: white;
+    width: 100%;
+}
+
+.calendar caption, .calendarbox h2 {
+    margin: 0;
+    font-size: 11px;
+    text-align: center;
+    border-top: none;
+}
+
+.calendar th {
+    font-size: 10px;
+    color: #666;
+    padding: 2px 3px;
+    text-align: center;
+    background: #e1e1e1 url(../img/nav-bg.gif) 0 50% repeat-x;
+    border-bottom: 1px solid #ddd;
+}
+
+.calendar td {
+    font-size: 11px;
+    text-align: center;
+    padding: 0;
+    border-top: 1px solid #eee;
+    border-bottom: none;
+}
+
+.calendar td.selected a {
+    background: #C9DBED;
+}
+
+.calendar td.nonday {
+    background: #efefef;
+}
+
+.calendar td.today a {
+    background: #ffc;
+}
+
+.calendar td a, .timelist a {
+    display: block;
+    font-weight: bold;
+    padding: 4px;
+    text-decoration: none;
+    color: #444;
+}
+
+.calendar td a:hover, .timelist a:hover {
+    background: #5b80b2;
+    color: white;
+}
+
+.calendar td a:active, .timelist a:active {
+    background: #036;
+    color: white;
+}
+
+.calendarnav {
+    font-size: 10px;
+    text-align: center;
+    color: #ccc;
+    margin: 0;
+    padding: 1px 3px;
+}
+
+.calendarnav a:link, #calendarnav a:visited, #calendarnav a:hover {
+    color: #999;
+}
+
+.calendar-shortcuts {
+    background: white;
+    font-size: 10px;
+    line-height: 11px;
+    border-top: 1px solid #eee;
+    padding: 3px 0 4px;
+    color: #ccc;
+}
+
+.calendarbox .calendarnav-previous, .calendarbox .calendarnav-next {
+    display: block;
+    position: absolute;
+    font-weight: bold;
+    font-size: 12px;
+    background: #C9DBED url(../img/default-bg.gif) bottom left repeat-x;
+    padding: 1px 4px 2px 4px;
+    color: white;
+}
+
+.calendarnav-previous:hover, .calendarnav-next:hover {
+    background: #036;
+}
+
+.calendarnav-previous {
+    top: 0;
+    left: 0;
+}
+
+.calendarnav-next {
+    top: 0;
+    right: 0;
+}
+
+.calendar-cancel {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 10px;
+    background: #e1e1e1 url(../img/nav-bg.gif) 0 50% repeat-x;
+    border-top: 1px solid #ddd;
+}
+
+.calendar-cancel:hover {
+    background: #e1e1e1 url(../img/nav-bg-reverse.gif) 0 50% repeat-x;
+}
+
+.calendar-cancel a {
+    color: black;
+    display: block;
+}
+
+ul.timelist, .timelist li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.timelist a {
+    padding: 2px;
+}
+
+.font1 {
+	font-family:'Arial Rounded MT Bold';;
+ 	font-weight: bold;  
+	color: red;
+	font-size: 45px;
+	vertical-align: 6px;
+	padding-left: 6px;
+	padding-top: 2px;
+}
+.font2 {
+	font-family: 'Arial Rounded MT Bold';
+/* 	font-weight: bold; */
+	color: black; 
+	font-size: 25px;
+	vertical-align: 6px;
+}
+.font3 {
+/* 	vertical-align: middle; */
+	font-family: 'Arial Rounded MT Bold';	
+	color: white; 
+	font-size: 25px;
+	float: right; 
+	margin-top: 12px;
+	margin-right: 12px;
+}
+
+.jumbotron {
+	padding: 0px;		
+	color: #eee;
+	background-color: #000;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+/* 	width: 95%;	 */
+	margin: 20px;
+	margin-top: 2px;
+	padding-bottom: 0px;	
+}
+
+
+.form-control1 {
+	/* 	width:100%; */
+	height: 34px;
+	padding: 6px 12px;
+	margin-bottom: 10px;
+	margin-right: 10px; font-size : 14px;
+	line-height: 1.42857143;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #265a88;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	font-size: 14px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+	<div class="jumbotron" >
+	<img src="/static/enquiryforms/aeon-small1.jpg"  alt="aeon Tutorials" width="200" style="margin-left: 4px;"/>	 <span class="font3" > Enquiry Form</span></h2>
+</div>
+		<div id="form_data" class="container" style="width: 50%;">
+			{% if error_message %}
+			<p>
+				<strong>{{ error_message }}</strong>
+			</p>
+			{% endif %}
+
+			<form action="{% url 'enquiry:save_data'  %}" method="post">
+				{% csrf_token %} <br> 
+				<label class="sr-only"
+					for="id_career_choice">Career choice:</label> 
+				
+				<select name="career_choice" class="form-control1" id="id_career_choice" style="width: 176px;">
+					<option value="null">Career Option</option>
+					<option value="Engineering">Enginering</option>
+					<option value="medical">Medical</option>  
+				</select>	
+				<br>
+				<label class="sr-only" for="id_student_fname">Student
+					Name:</label> 
+				<input class="form-control1" id="id_student_fname"
+					maxlength="50" name="student_fname" type="text"
+					placeholder="First Name" required />
+
+				<!-- <label class="sr-only" for="id_student_mname">Student Name:</label> -->
+				<input class="form-control1" id="id_student_mname" maxlength="50"
+					name="student_mname" type="text" placeholder="Middle Name" required />
+
+				<!-- <label class="sr-only" for="id_student_lname">Student Name:</label> -->
+				<input class="form-control1" id="id_student_lname" maxlength="50"
+					name="student_lname" type="text" placeholder="Last Name" required />
+				<br>
+
+				<div class="form-row field-birth_date">          
+                     <div>
+                         <!-- <label class="required" for="id_birth_date">Birth Date:</label>                  -->       
+                            <input class="vDateField form-control1" placeholder="Birth Date"  style="width: 177px;"
+							id="id_birth_date" name="birth_date" size="10" type="text" />
+					</div>
+				</div>
+
+					<label class="sr-only" for="id_contact_no_primary">Contact
+					Number:</label> <input class="form-control1" id="id_contact_no_primary"
+					maxlength="10" name="contact_no_primary" type="text"
+					placeholder="Mobile" required />
+				<!-- 	<label class="sr-only" for="id_contact_no_home">Contact no home:</label> -->
+				<input class="form-control1" id="id_contact_no_home" maxlength="10"
+					name="contact_no_home" type="text" placeholder="Mobile/Landline"
+					required /> <br> <label class="sr-only" for="id_contact_email">Email
+					Address: </label> <input class="form-control1" id="id_contact_email"
+					maxlength="100" name="contact_email" type="email" style="width: 368px;"
+					placeholder="Email Address" /> <br> <label class="sr-only"
+					for="id_address_home">Address home:</label> <input
+					class="form-control1" id="id_address_home" maxlength="1000" style="width: 368px;"
+					name="address_home" type="textarea"  placeholder="Home Address" /> <br>
+				<label class="sr-only" for="id_father_name">Father name:</label> <input
+					class="form-control1" id="id_father_name" maxlength="200" style="width: 368px;"
+					name="father_name" type="text" placeholder="Fathers Name" required />
+				<br /> <label class="sr-only" for="id_father_contact_primary">Father
+					Contact Number:</label> <input class="form-control1"
+					id="id_father_contact_primary" maxlength="10"
+					name="father_contact_primary" type="text" placeholder="Mobile"
+					required />
+				<!-- <label class="sr-only" for="id_father_contact_home">Father contact home:</label> -->
+				<input class="form-control1" id="id_father_contact_home"
+					maxlength="10" name="father_contact_home" type="text"
+					placeholder="Mobile/Landline" /> <br /> 
+					<label class="sr-only"
+					for="id_ssc_school">SSC School:</label> <input class="form-control1"
+					id="id_ssc_school" maxlength="100" name="ssc_school" type="text"
+					placeholder="School Name" style="width: 368px;"/> 
+					<br /> 
+					<label class="sr-only"
+					for="id_ssc_classes">SSC Classes:</label> <input
+					class="form-control1" id="id_ssc_classes" maxlength="100"
+					name="ssc_classes" type="text" placeholder="Classes Name" style="width: 368px;"/> 
+					<br>
+				<label class="sr-only" for="id_ssc_science">SSC Results:</label> 
+				<!-- <label class="required" for="id_ssc_rollno">Ssc rollno:</label> -->                        
+                            <input class="form-control1" id="id_ssc_rollno" maxlength="7" name="ssc_rollno" type="text" 
+							placeholder="SSC Roll No."/>
+							
+							<input class="form-control1" id="id_ssc_aggregate" maxlength="6"
+					name="ssc_aggregate" type="text" placeholder="SSC Aggregate Marks" />
+					
+					
+				
+					<br>
+				  <label class="sr-only" for="id_ssc_maths">Ssc maths:</label> 
+				<input class="form-control1" id="id_ssc_maths" maxlength="6"
+					name="ssc_maths" type="text" placeholder="Maths Marks" />
+
+					<input
+					class="form-control1" id="id_ssc_science" maxlength="6"
+					name="ssc_science" type="text" placeholder="Science Marks" />
+
+				
+				<!-- <label class="sr-only" for="id_ssc_percent">Ssc percent:</label> -->
+				<!-- <input class="form-control1" id="id_ssc_percent" maxlength="6"
+					name="ssc_percent" type="text" placeholder="Percent" />  -->
+					
+					
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>				
+
+			</form>
+		</div>
+	
+</body>
