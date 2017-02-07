@@ -1,2 +1,2 @@
 # enquiryForm-Django
-Simple enquury form..
+Simple enquiry form..
